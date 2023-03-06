@@ -9,10 +9,12 @@ foreach( testsourcefile ${APP_SOURCES} )
     string( REPLACE ".cpp" "" testname ${testsourcefile} )
     add_executable( ${testname} ${testsourcefile} )
 
-    set_target_properties(${testname} PROPERTIES LINKER_LANGUAGE CXX)
+    set_target_properties(${testname} PROPERTIES
+        LINKER_LANGUAGE CXX
+        CXX_STANDARD 14)
     if(OpenMP_CXX_FOUND)
         target_link_libraries(${testname} OpenMP::OpenMP_CXX)
     endif()
-    install(TARGETS ${testname} DESTINATION "bin/math")
+    install(TARGETS ${testname} DESTINATION "bin/sorting")
 
 endforeach( testsourcefile ${APP_SOURCES} )
